@@ -2,7 +2,8 @@ import { MadeWithDyad } from "@/components/made-with-dyad";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import ApproachSection from "@/components/ApproachSection"; // Importar o novo componente
+import ApproachSection from "@/components/ApproachSection";
+import ModalitySection from "@/components/ModalitySection"; // Importar o novo componente
 
 export default function Home() {
   return (
@@ -11,7 +12,8 @@ export default function Home() {
       <main className="flex-grow">
         <HeroSection />
         <AboutSection />
-        <ApproachSection /> {/* Adicionar a seção 'Abordagem' aqui */}
+        <ApproachSection />
+        <ModalitySection /> {/* Adicionar a seção 'Modalidade' aqui */}
         {/* As próximas seções serão adicionadas aqui */}
       </main>
       <MadeWithDyad />
