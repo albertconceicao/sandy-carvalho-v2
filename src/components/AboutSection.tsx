@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const AboutSection = () => {
   return (
-    <section id="about" className="w-full py-12 md:py-24 lg:py-32 bg-background">
+    <section id="about" className="w-full py-12 md:py-24 lg:py-32 bg-muted"> {/* Alterado de bg-background para bg-muted */}
       <div className="container px-4 md:px-6 grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
         <div className="relative h-[300px] w-full lg:h-[450px] rounded-lg overflow-hidden shadow-lg">
           <Image
