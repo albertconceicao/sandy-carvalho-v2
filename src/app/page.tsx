@@ -7,7 +7,8 @@ import ModalitySection from "@/components/ModalitySection";
 import ServicesSection from "@/components/ServicesSection";
 import FAQSection from "@/components/FAQSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import ContactSection from "@/components/ContactSection"; // Importar o novo componente
+import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer"; // Importar o novo componente Footer
 
 export default function Home() {
   return (
@@ -21,9 +22,10 @@ export default function Home() {
         <ServicesSection />
         <FAQSection />
         <TestimonialsSection />
-        <ContactSection /> {/* Adicionar a seção de contato aqui */}
+        <ContactSection />
       </main>
       <MadeWithDyad />
+      <Footer /> {/* Adicionar o rodapé aqui, após MadeWithDyad */}
     </div>
   );
 }
