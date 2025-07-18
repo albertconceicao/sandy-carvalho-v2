@@ -2,10 +2,18 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-background"> {/* Alterado de bg-muted para bg-background */}
+    <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-background">
       <div className="container px-4 md:px-6 text-center">
         <div className="space-y-4 mb-12">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -57,16 +65,29 @@ const ServicesSection = () => {
               <p className="text-muted-foreground mb-4">
                 O principal objetivo da terapia de casal é promover um espaço seguro de diálogo em que o casal possa expressar opiniões sobre situações que estão interferindo no relacionamento. A partir do olhar sistêmico observo as interações do casal, suas habilidades, padrões de comportamento, crenças familiares, e como lidam com os problemas. Com base nessas observações são sugeridas algumas intervenções que visam possibilitar a resolução de conflitos, treino de habilidades do casal, autoconhecimento e abrir um espaço de comunicação assertiva e não violenta, buscando um alinhamento entre as expectativas do casal. As sessões duram média de 1h (uma hora) à 1h30 (uma hora e trinta minutos) de acordo com a necessidade ou da atividade proposta em sessão.
               </p>
-              <p className="text-muted-foreground font-semibold mb-4">
-                A terapia de casal é indicada para casais que:
-              </p>
-              <ul className="text-muted-foreground list-disc list-inside mb-4">
-                <li>Desejam aprender como lidar com brigas.</li>
-                <li>Superar a infidelidade e cultivar confiança e respeito.</li>
-                <li>Alinhar expectativas sexuais e financeiras.</li>
-                <li>Como uma última alternativa antes da separação.</li>
-                <li>E para os que, mesmo em um relacionamento próspero, querem inovar e prevenir problemas futuros.</li>
-              </ul>
+              
+              {/* Botão Detalhes para o Pop-up */}
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="outline" className="w-full mt-4 mb-2">Detalhes</Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle>Indicações para Terapia de Casal</DialogTitle>
+                    <DialogDescription>
+                      A terapia de casal é indicada para casais que:
+                    </DialogDescription>
+                  </DialogHeader>
+                  <ul className="text-muted-foreground list-disc list-inside space-y-2">
+                    <li>Desejam aprender como lidar com brigas.</li>
+                    <li>Superar a infidelidade e cultivar confiança e respeito.</li>
+                    <li>Alinhar expectativas sexuais e financeiras.</li>
+                    <li>Como uma última alternativa antes da separação.</li>
+                    <li>E para os que, mesmo em um relacionamento próspero, querem inovar e prevenir problemas futuros.</li>
+                  </ul>
+                </DialogContent>
+              </Dialog>
+
               <Link href="#contact" className="mt-auto">
                 <Button className="w-full">AGENDAR SESSÃO</Button>
               </Link>
