@@ -59,7 +59,20 @@ export default {
   				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
-  			}
+  			},
+            brown: { // Nova cor adicionada
+                50: '#fdf8f6',
+                100: '#fbeee8',
+                200: '#f7dcd0',
+                300: '#f2c3b0',
+                400: '#ec9f81',
+                500: '#e47a57',
+                600: '#d46444',
+                700: '#c05136',
+                800: '#a9442f',
+                900: '#923a2a',
+                950: '#4f1b0f',
+            }
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
