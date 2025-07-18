@@ -3,7 +3,8 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ApproachSection from "@/components/ApproachSection";
-import ModalitySection from "@/components/ModalitySection"; // Importar o novo componente
+import ModalitySection from "@/components/ModalitySection";
+import ServicesSection from "@/components/ServicesSection"; // Importar o novo componente
 
 export default function Home() {
   return (
@@ -13,7 +14,8 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <ApproachSection />
-        <ModalitySection /> {/* Adicionar a seção 'Modalidade' aqui */}
+        <ModalitySection />
+        <ServicesSection /> {/* Adicionar a seção 'Serviços Ofertados' aqui */}
         {/* As próximas seções serão adicionadas aqui */}
       </main>
       <MadeWithDyad />
