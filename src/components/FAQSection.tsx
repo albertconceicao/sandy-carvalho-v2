@@ -79,7 +79,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="faq" className="w-full py-12 md:py-24 lg:py-32 bg-background">
+    <section id="faq" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
       <div className="container px-4 md:px-6 grid gap-8 lg:grid-cols-2 lg:gap-12 items-start">
         <div className="flex flex-col justify-center space-y-4 text-center lg:text-left">
           <div className="space-y-2">
