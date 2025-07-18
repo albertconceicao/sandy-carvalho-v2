@@ -8,17 +8,17 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    container: { // Adicionando a configuração do container aqui
-      center: true, // Centraliza o container
-      padding: { // Define o padding padrão para o container
-        DEFAULT: '1rem', // 16px
-        sm: '2rem',  // 32px
-        md: '2.5rem', // 40px
-        lg: '3rem',  // 48px
-        xl: '4rem',  // 64px
-        '2xl': '5rem', // 80px
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        md: '2.5rem',
+        lg: '3rem',
+        xl: '4rem',
+        '2xl': '5rem',
       },
-      screens: { // Define a largura máxima para diferentes breakpoints
+      screens: {
         '2xl': '1400px',
       },
     },
@@ -74,19 +74,6 @@ export default {
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
   			},
-            brown: { // Nova cor adicionada
-                50: '#fdf8f6',
-                100: '#fbeee8',
-                200: '#f7dcd0',
-                300: '#f2c3b0',
-                400: '#ec9f81',
-                500: '#e47a57',
-                600: '#d46444',
-                700: '#c05136',
-                800: '#a9442f',
-                900: '#923a2a',
-                950: '#4f1b0f',
-            }
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

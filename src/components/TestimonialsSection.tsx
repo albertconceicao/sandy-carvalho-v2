@@ -46,21 +46,21 @@ const TestimonialsSection = () => {
   }, [emblaApi]);
 
   return (
-    <section id="testimonials" className="relative w-full py-12 md:py-24 lg:py-32 bg-amber-700 text-white">
+    <section id="testimonials" className="relative w-full py-12 md:py-24 lg:py-32 bg-primary text-primary-foreground">
       <div className="container px-4 md:px-6 text-center">
         <div className="space-y-4 mb-12">
-          <p className="text-lg font-semibold text-amber-200">DEPOIMENTOS</p>
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-white">
+          <p className="text-lg font-semibold text-secondary-foreground">DEPOIMENTOS</p>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primary-foreground">
             O que meus clientes falam de mim
           </h2>
         </div>
 
         <div className="relative">
           <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex -ml-4"> {/* Negative margin to offset padding on slides */}
+            <div className="flex -ml-4">
               {testimonials.map((testimonial, index) => (
-                <div key={index} className="flex-none w-full md:w-1/2 lg:w-1/3 pl-4"> {/* Padding for spacing */}
-                  <Card className="bg-white text-foreground h-full flex flex-col">
+                <div key={index} className="flex-none w-full md:w-1/2 lg:w-1/3 pl-4">
+                  <Card className="bg-card text-card-foreground h-full flex flex-col">
                     <CardHeader>
                       <div className="flex items-center justify-between">
                         <div>
@@ -105,8 +105,8 @@ const TestimonialsSection = () => {
         </div>
 
         <div className="mt-12">
-          <Link href="#contact"> {/* Assuming a contact section for leaving a testimonial */}
-            <Button size="lg" className="bg-white text-amber-700 hover:bg-gray-100">DEIXAR MEU DEPOIMENTO</Button>
+          <Link href="#contact">
+            <Button size="lg" className="bg-primary-foreground text-primary hover:bg-accent">DEIXAR MEU DEPOIMENTO</Button>
           </Link>
         </div>
       </div>

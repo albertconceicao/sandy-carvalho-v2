@@ -57,56 +57,56 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-brown-100">
+    <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-secondary">
       <div className="container px-4 md:px-6 grid gap-8 lg:grid-cols-2 lg:gap-12 items-start">
         {/* Left Side: Contact Info */}
         <div className="flex flex-col justify-center space-y-4 text-center lg:text-left">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-brown-800">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-foreground">
               Entre em contato
             </h2>
-            <p className="max-w-[700px] text-brown-700 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mx-auto lg:mx-0">
+            <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mx-auto lg:mx-0">
               Sua mensagem será respondida em breve!
             </p>
           </div>
-          <div className="space-y-4 text-brown-700">
+          <div className="space-y-4 text-muted-foreground">
             <div className="flex items-center justify-center lg:justify-start gap-2">
-              <Phone className="h-5 w-5 text-brown-800" />
+              <Phone className="h-5 w-5 text-foreground" />
               <span>(31) 99118-1825</span>
             </div>
             <div className="flex items-center justify-center lg:justify-start gap-2">
-              <Instagram className="h-5 w-5 text-brown-800" />
+              <Instagram className="h-5 w-5 text-foreground" />
               <span>@psiluizaaguiar</span>
             </div>
             <div className="flex items-center justify-center lg:justify-start gap-2">
-              <Mail className="h-5 w-5 text-brown-800" />
+              <Mail className="h-5 w-5 text-foreground" />
               <span>psi.luiza.aguiar@gmail.com</span>
             </div>
             <div className="flex items-center justify-center lg:justify-start gap-2">
-              <Linkedin className="h-5 w-5 text-brown-800" />
+              <Linkedin className="h-5 w-5 text-foreground" />
               <span>Luiza Aguiar</span>
             </div>
             <div className="flex items-center justify-center lg:justify-start gap-2">
-              <Youtube className="h-5 w-5 text-brown-800" />
+              <Youtube className="h-5 w-5 text-foreground" />
               <span>@psiluizaaguiar</span>
             </div>
           </div>
         </div>
 
         {/* Right Side: Contact Form */}
-        <div className="w-full max-w-2xl mx-auto lg:mx-0 bg-white p-8 rounded-lg shadow-lg">
+        <div className="w-full max-w-2xl mx-auto lg:mx-0 bg-card p-8 rounded-lg shadow-lg">
           <div className="flex justify-center space-x-4 mb-6">
-            <Button className="bg-brown-500 hover:bg-brown-600 text-white rounded-full px-6 py-2">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 py-2">
               Entre Em Contato
             </Button>
             <Link href="#testimonials">
-              <Button variant="outline" className="border-brown-500 text-brown-500 hover:bg-brown-50 hover:text-brown-600 rounded-full px-6 py-2">
+              <Button variant="outline" className="border-primary text-primary hover:bg-accent hover:text-primary-foreground rounded-full px-6 py-2">
                 Escrever Depoimento
               </Button>
             </Link>
           </div>
 
-          <h3 className="text-2xl font-bold mb-6 text-center text-brown-800">Entre Em Contato Comigo</h3>
+          <h3 className="text-2xl font-bold mb-6 text-center text-foreground">Entre Em Contato Comigo</h3>
 
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -274,7 +274,7 @@ const ContactSection = () => {
                 )}
               />
 
-              <Button type="submit" className="w-full bg-brown-700 hover:bg-brown-800 text-white">
+              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                 Enviar
               </Button>
             </form>
