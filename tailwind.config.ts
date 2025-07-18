@@ -8,6 +8,20 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: { // Adicionando a configuração do container aqui
+      center: true, // Centraliza o container
+      padding: { // Define o padding padrão para o container
+        DEFAULT: '1rem', // 16px
+        sm: '2rem',  // 32px
+        md: '2.5rem', // 40px
+        lg: '3rem',  // 48px
+        xl: '4rem',  // 64px
+        '2xl': '5rem', // 80px
+      },
+      screens: { // Define a largura máxima para diferentes breakpoints
+        '2xl': '1400px',
+      },
+    },
   	extend: {
   		colors: {
   			background: 'hsl(var(--background))',
