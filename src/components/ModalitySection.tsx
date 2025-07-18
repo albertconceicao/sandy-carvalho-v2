@@ -5,7 +5,7 @@ import { CheckCircle2 } from "lucide-react";
 
 const ModalitySection = () => {
   return (
-    <section id="modality" className="w-full py-12 md:py-24 lg:py-32 bg-background">
+    <section id="modality" className="w-full py-12 md:py-24 lg:py-32 bg-muted"> {/* Alterado de bg-background para bg-muted */}
       <div className="container px-4 md:px-6 grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
         <div className="flex flex-col justify-center space-y-8 text-center lg:text-left">
           <div className="space-y-4">
