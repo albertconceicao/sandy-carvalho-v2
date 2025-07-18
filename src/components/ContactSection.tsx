@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { toast } from "sonner";
+import TestimonialFormDialog from "./TestimonialFormDialog"; // Importar o novo componente
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Nome deve ter pelo menos 2 caracteres." }),
@@ -99,11 +100,8 @@ const ContactSection = () => {
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 py-2">
               Entre Em Contato
             </Button>
-            <Link href="#testimonials">
-              <Button variant="outline" className="border-primary text-primary hover:bg-accent hover:text-primary-foreground rounded-full px-6 py-2">
-                Escrever Depoimento
-              </Button>
-            </Link>
+            {/* Usar o novo componente TestimonialFormDialog */}
+            <TestimonialFormDialog />
           </div>
 
           <h3 className="text-2xl font-bold mb-6 text-center text-foreground">Entre Em Contato Comigo</h3>
