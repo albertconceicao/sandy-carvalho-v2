@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
+import TestimonialFormDialog from "./TestimonialFormDialog"; // Importar o componente do formulário de depoimento
 
 const testimonials = [
   {
@@ -105,9 +106,8 @@ const TestimonialsSection = () => {
         </div>
 
         <div className="mt-12">
-          <Link href="#contact">
-            <Button size="lg" className="bg-primary-foreground text-primary hover:bg-accent">DEIXAR MEU DEPOIMENTO</Button>
-          </Link>
+          {/* Usar o novo componente TestimonialFormDialog */}
+          <TestimonialFormDialog />
         </div>
       </div>
     </section>
