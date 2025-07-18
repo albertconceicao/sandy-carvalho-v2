@@ -5,7 +5,8 @@ import AboutSection from "@/components/AboutSection";
 import ApproachSection from "@/components/ApproachSection";
 import ModalitySection from "@/components/ModalitySection";
 import ServicesSection from "@/components/ServicesSection";
-import FAQSection from "@/components/FAQSection"; // Importar o novo componente
+import FAQSection from "@/components/FAQSection";
+import TestimonialsSection from "@/components/TestimonialsSection"; // Importar o novo componente
 
 export default function Home() {
   return (
@@ -17,7 +18,8 @@ export default function Home() {
         <ApproachSection />
         <ModalitySection />
         <ServicesSection />
-        <FAQSection /> {/* Adicionar a seção 'Dúvidas Frequentes' aqui */}
+        <FAQSection />
+        <TestimonialsSection /> {/* Adicionar a seção 'Depoimentos' aqui */}
         {/* As próximas seções serão adicionadas aqui */}
       </main>
       <MadeWithDyad />

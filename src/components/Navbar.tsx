@@ -13,6 +13,7 @@ const navLinks = [
   { name: "Modalidade", href: "#modality" },
   { name: "Serviços", href: "#services" },
   { name: "Dúvidas frequentes", href: "#faq" },
+  { name: "Depoimentos", href: "#testimonials" }, // Adicionar link para Depoimentos
   { name: "Contato", href: "#contact" },
 ];
 
