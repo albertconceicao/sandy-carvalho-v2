@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
-import TestimonialFormDialog from "./TestimonialFormDialog"; // Importar o componente do formulário de depoimento
+import Autoplay from "embla-carousel-autoplay"; // Importar o plugin Autoplay
+import TestimonialFormDialog from "./TestimonialFormDialog";
 
 const testimonials = [
   {
@@ -36,7 +37,8 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  // Adicionar o plugin Autoplay ao useEmblaCarousel
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" }, [Autoplay({ delay: 5000, stopOnInteraction: false })]);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -106,7 +108,6 @@ const TestimonialsSection = () => {
         </div>
 
         <div className="mt-12">
-          {/* Usar o novo componente TestimonialFormDialog */}
           <TestimonialFormDialog />
         </div>
       </div>
