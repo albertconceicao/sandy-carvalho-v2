@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle2 } from "lucide-react";
+// CheckCircle2 não será mais necessário para este layout
 
 const ModalitySection = () => {
   return (
@@ -22,21 +22,31 @@ const ModalitySection = () => {
               <CardHeader>
                 <CardTitle className="text-2xl font-semibold">O que é necessário?</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
-                <ul className="space-y-2 text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span>Tenha um aparelho com boa conexão à internet;</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span>Procure sempre estar em um ambiente privado, onde você se sinta confortável para falar sobre o que precisar e sem interrupções;</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span>Recomendo também que, se possível, utilize fones de ouvido, e não fotografe ou faça gravações de áudio ou vídeo durante as sessões para que o sigilo durante o atendimento seja preservado;</span>
-                  </li>
-                </ul>
+              <CardContent className="space-y-6"> {/* Aumentei o espaçamento entre os itens */}
+                <div className="flex items-start gap-4">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg flex-shrink-0">
+                    1
+                  </div>
+                  <p className="text-muted-foreground flex-grow">
+                    Tenha um aparelho com boa conexão à internet;
+                  </p>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg flex-shrink-0">
+                    2
+                  </div>
+                  <p className="text-muted-foreground flex-grow">
+                    Procure sempre estar em um ambiente privado, onde você se sinta confortável para falar sobre o que precisar e sem interrupções;
+                  </p>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg flex-shrink-0">
+                    3
+                  </div>
+                  <p className="text-muted-foreground flex-grow">
+                    Recomendo também que, se possível, utilize fones de ouvido, e não fotografe ou faça gravações de áudio ou vídeo durante as sessões para que o sigilo durante o atendimento seja preservado;
+                  </p>
+                </div>
               </CardContent>
             </Card>
 
@@ -44,21 +54,31 @@ const ModalitySection = () => {
               <CardHeader>
                 <CardTitle className="text-2xl font-semibold">Quais as Vantagens?</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
-                <ul className="space-y-2 text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span>Quebra de barreiras geográficas</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span>Flexibilidade e privacidade</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span>Economia de tempo com deslocamento</span>
-                  </li>
-                </ul>
+              <CardContent className="space-y-6"> {/* Aumentei o espaçamento entre os itens */}
+                <div className="flex items-start gap-4">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg flex-shrink-0">
+                    1
+                  </div>
+                  <p className="text-muted-foreground flex-grow">
+                    Quebra de barreiras geográficas
+                  </p>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg flex-shrink-0">
+                    2
+                  </div>
+                  <p className="text-muted-foreground flex-grow">
+                    Flexibilidade e privacidade
+                  </p>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg flex-shrink-0">
+                    3
+                  </div>
+                  <p className="text-muted-foreground flex-grow">
+                    Economia de tempo com deslocamento
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </div>
