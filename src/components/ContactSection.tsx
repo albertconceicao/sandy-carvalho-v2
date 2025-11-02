@@ -74,11 +74,11 @@ const ContactSection = () => {
             </div> */}
             <div className="flex items-center justify-center lg:justify-start gap-2">
               <Instagram className="h-5 w-5 text-foreground" />
-              <span>@psiluizaaguiar</span>
+              <span>@psandycarvalhopsi</span>
             </div>
             <div className="flex items-center justify-center lg:justify-start gap-2">
               <Mail className="h-5 w-5 text-foreground" />
-              <span>psi.luiza.aguiar@gmail.com</span>
+              <span>contato@sandycarvalho.com.br</span>
             </div>
           </div>
         </div>
