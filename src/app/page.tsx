@@ -1,14 +1,13 @@
-import { MadeWithDyad } from "@/components/made-with-dyad";
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ApproachSection from "@/components/ApproachSection";
-import ModalitySection from "@/components/ModalitySection";
-import ServicesSection from "@/components/ServicesSection";
-import FAQSection from "@/components/FAQSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
+import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer"; // Importar o novo componente Footer
+import HeroSection from "@/components/HeroSection";
+import ModalitySection from "@/components/ModalitySection";
+import Navbar from "@/components/Navbar";
+import ServicesSection from "@/components/ServicesSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 export default function Home() {
   return (
@@ -24,7 +23,6 @@ export default function Home() {
         <TestimonialsSection />
         <ContactSection />
       </main>
-      <MadeWithDyad />
       <Footer /> {/* Adicionar o rodapé aqui, após MadeWithDyad */}
     </div>
   );

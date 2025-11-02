@@ -1,7 +1,6 @@
-import React from "react";
-import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
+import Image from "next/image";
 
 const ModalitySection = () => {
   return (
@@ -65,7 +64,7 @@ const ModalitySection = () => {
         </div>
         <div className="relative h-[300px] w-full lg:h-[450px] rounded-lg overflow-hidden shadow-lg">
           <Image
-            src="https://images.unsplash.com/photo-1576091160550-fd4282a76597?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="/video-call.jpg"
             alt="A person on a video call"
             layout="fill"
             objectFit="cover"

@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useCallback } from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay"; // Importar o plugin Autoplay
+import useEmblaCarousel from "embla-carousel-react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { useCallback } from "react";
 import TestimonialFormDialog from "./TestimonialFormDialog";
 
 const testimonials = [
@@ -52,7 +51,7 @@ const TestimonialsSection = () => {
     <section id="testimonials" className="relative w-full py-12 md:py-24 lg:py-32 bg-primary text-primary-foreground">
       <div className="container px-4 md:px-6 text-center">
         <div className="space-y-4 mb-12">
-          <p className="text-lg font-semibold text-secondary-foreground">DEPOIMENTOS</p>
+          {/* <p className="text-lg font-semibold text-secondary-foreground">DEPOIMENTOS</p> */}
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primary-foreground">
             O que meus clientes falam de mim
           </h2>

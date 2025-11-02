@@ -1,6 +1,5 @@
-import React from "react";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
 
 const HeroSection = () => {
@@ -27,7 +26,7 @@ const HeroSection = () => {
         </div>
         <div className="relative h-[300px] w-full lg:h-[450px] rounded-lg overflow-hidden shadow-lg">
           <Image
-            src="https://images.unsplash.com/photo-1516534775068-bc434196a1e9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="/hero-person.jpg"
             alt="A person holding a computer"
             layout="fill"
             objectFit="cover"
