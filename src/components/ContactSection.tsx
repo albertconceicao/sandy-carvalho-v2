@@ -1,19 +1,16 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Phone, Instagram, Mail, Linkedin, Youtube } from "lucide-react";
-import { useForm } from "react-hook-form";
+import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Instagram, Mail } from "lucide-react";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import * as z from "zod";
 import TestimonialFormDialog from "./TestimonialFormDialog"; // Importar o novo componente
 
 const formSchema = z.object({
@@ -71,10 +68,10 @@ const ContactSection = () => {
             </p>
           </div>
           <div className="space-y-4 text-muted-foreground">
-            <div className="flex items-center justify-center lg:justify-start gap-2">
+            {/* <div className="flex items-center justify-center lg:justify-start gap-2">
               <Phone className="h-5 w-5 text-foreground" />
               <span>(31) 99118-1825</span>
-            </div>
+            </div> */}
             <div className="flex items-center justify-center lg:justify-start gap-2">
               <Instagram className="h-5 w-5 text-foreground" />
               <span>@psiluizaaguiar</span>
@@ -82,14 +79,6 @@ const ContactSection = () => {
             <div className="flex items-center justify-center lg:justify-start gap-2">
               <Mail className="h-5 w-5 text-foreground" />
               <span>psi.luiza.aguiar@gmail.com</span>
-            </div>
-            <div className="flex items-center justify-center lg:justify-start gap-2">
-              <Linkedin className="h-5 w-5 text-foreground" />
-              <span>Luiza Aguiar</span>
-            </div>
-            <div className="flex items-center justify-center lg:justify-start gap-2">
-              <Youtube className="h-5 w-5 text-foreground" />
-              <span>@psiluizaaguiar</span>
             </div>
           </div>
         </div>
