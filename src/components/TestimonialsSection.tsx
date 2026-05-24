@@ -2,42 +2,23 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Autoplay from "embla-carousel-autoplay"; // Importar o plugin Autoplay
+import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { useCallback } from "react";
+import type { SiteContent, Testimonial } from "@/lib/content/types";
 import TestimonialFormDialog from "./TestimonialFormDialog";
 
-const testimonials = [
-  {
-    name: "Mylena Pereira",
-    date: "23/06/2023",
-    rating: 5,
-    text: "Não tenho palavras para descrever a gratidão que sinto. Comecei a fazer acompanhamento psicológico com Stefany num momento muito delicado da minha vida e ela foi essencial nesse processo.",
-  },
-  {
-    name: "Nicolle Castilho",
-    date: "23/06/2023",
-    rating: 5,
-    text: "A Stefany é uma excelente profissional! Me senti acolhida e confortável desde a primeira sessão e sou muito grata tê-la como auxílio.",
-  },
-  {
-    name: "João Silva",
-    date: "15/05/2023",
-    rating: 4,
-    text: "A terapia me ajudou a ver as coisas de uma nova perspectiva. Recomendo muito!",
-  },
-  {
-    name: "Ana Costa",
-    date: "01/07/2023",
-    rating: 5,
-    text: "Profissionalismo e empatia definem o trabalho da Sandy. Me sinto muito melhor após as sessões.",
-  },
-];
+type TestimonialsSectionProps = {
+  content: SiteContent["testimonials"];
+  testimonials: Testimonial[];
+};
 
-const TestimonialsSection = () => {
-  // Adicionar o plugin Autoplay ao useEmblaCarousel
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" }, [Autoplay({ delay: 5000, stopOnInteraction: false })]);
+const TestimonialsSection = ({ content, testimonials }: TestimonialsSectionProps) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: "start" },
+    [Autoplay({ delay: 5000, stopOnInteraction: false })],
+  );
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -48,20 +29,19 @@ const TestimonialsSection = () => {
   }, [emblaApi]);
 
   return (
-    <section id="testimonials" className="relative w-full py-12 md:py-24 lg:py-32 bg-primary text-primary-foreground">
+    <section id="testimonials" className="relative w-full overflow-x-hidden py-12 md:py-24 lg:py-32 bg-primary text-primary-foreground">
       <div className="container px-4 md:px-6 text-center">
         <div className="space-y-4 mb-12">
-          {/* <p className="text-lg font-semibold text-secondary-foreground">DEPOIMENTOS</p> */}
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primary-foreground">
-            O que meus clientes falam de mim
+            {content.title}
           </h2>
         </div>
 
         <div className="relative">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex -ml-4">
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="flex-none w-full md:w-1/2 lg:w-1/3 pl-4">
+              {testimonials.map((testimonial) => (
+                <div key={testimonial.id} className="flex-none w-full md:w-1/2 lg:w-1/3 pl-4">
                   <Card className="bg-card text-card-foreground h-full flex flex-col">
                     <CardHeader>
                       <div className="flex items-center justify-between">
@@ -69,8 +49,9 @@ const TestimonialsSection = () => {
                           <CardTitle className="text-lg font-semibold">{testimonial.name}</CardTitle>
                           <p className="text-sm text-muted-foreground">{testimonial.date}</p>
                         </div>
-                        {/* Placeholder for Google icon */}
-                        <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-500 text-white text-xs font-bold">G</span>
+                        <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-500 text-white text-xs font-bold">
+                          G
+                        </span>
                       </div>
                     </CardHeader>
                     <CardContent className="flex-grow">
@@ -87,7 +68,6 @@ const TestimonialsSection = () => {
             </div>
           </div>
 
-          {/* Navigation Buttons */}
           <Button
             variant="ghost"
             size="icon"

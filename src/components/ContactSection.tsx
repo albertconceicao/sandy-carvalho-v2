@@ -11,7 +11,8 @@ import { Instagram, Mail } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
-import TestimonialFormDialog from "./TestimonialFormDialog"; // Importar o novo componente
+import TestimonialFormDialog from "./TestimonialFormDialog";
+import type { SiteContent } from "@/lib/content/types";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Nome deve ter pelo menos 2 caracteres." }),
@@ -30,7 +31,11 @@ const formSchema = z.object({
   message: z.string().optional(),
 });
 
-const ContactSection = () => {
+type ContactSectionProps = {
+  global: SiteContent["global"];
+};
+
+const ContactSection = ({ global }: ContactSectionProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,23 +53,36 @@ const ContactSection = () => {
   const selectedService = form.watch("service");
   const showReasonField = selectedService && selectedService !== "lectures";
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-    toast.success("Mensagem enviada com sucesso!");
-    form.reset();
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      toast.success("Mensagem enviada com sucesso!");
+      form.reset();
+    } catch {
+      toast.error("Não foi possível enviar a mensagem. Tente novamente.");
+    }
   };
 
   return (
-    <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-secondary">
+    <section id="contact" className="w-full scroll-mt-16 py-12 md:py-24 lg:py-32 bg-secondary overflow-x-hidden">
       <div className="container px-4 md:px-6 grid gap-8 lg:grid-cols-2 lg:gap-12 items-start">
         {/* Left Side: Contact Info */}
-        <div className="flex flex-col justify-center space-y-4 text-center lg:text-left">
+        <div className="flex w-full min-w-0 flex-col justify-center space-y-4 text-center lg:text-left">
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-foreground">
-              Entre em contato
+              {global.contactTitle}
             </h2>
             <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mx-auto lg:mx-0">
-              Sua mensagem será respondida em breve!
+              {global.contactSubtitle}
             </p>
           </div>
           <div className="space-y-4 text-muted-foreground">
@@ -73,24 +91,23 @@ const ContactSection = () => {
               <span>(31) 99118-1825</span>
             </div> */}
             <div className="flex items-center justify-center lg:justify-start gap-2">
-              <Instagram className="h-5 w-5 text-foreground" />
-              <span>@psandycarvalhopsi</span>
+              <Instagram className="h-5 w-5 shrink-0 text-foreground" />
+              <span>{global.instagram}</span>
             </div>
             <div className="flex items-center justify-center lg:justify-start gap-2">
-              <Mail className="h-5 w-5 text-foreground" />
-              <span>contato@sandycarvalho.com.br</span>
+              <Mail className="h-5 w-5 shrink-0 text-foreground" />
+              <span className="break-all">{global.email}</span>
             </div>
           </div>
         </div>
 
         {/* Right Side: Contact Form */}
-        <div className="w-full max-w-2xl mx-auto lg:mx-0 bg-card p-8 rounded-lg shadow-lg">
-          <div className="flex justify-center space-x-4 mb-6">
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 py-2">
+        <div className="w-full min-w-0 max-w-2xl mx-auto lg:mx-0 bg-card p-4 sm:p-8 rounded-lg shadow-lg">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3 mb-6 w-full">
+            <Button className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 py-2">
               Entre Em Contato
             </Button>
-            {/* Usar o novo componente TestimonialFormDialog */}
-            <TestimonialFormDialog />
+            <TestimonialFormDialog triggerClassName="w-full sm:w-auto" />
           </div>
 
           <h3 className="text-2xl font-bold mb-6 text-center text-foreground">Entre Em Contato Comigo</h3>

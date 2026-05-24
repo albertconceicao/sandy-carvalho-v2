@@ -1,5 +1,4 @@
-import React from "react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
@@ -10,89 +9,62 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import type { SiteContent } from "@/lib/content/types";
 
-const ServicesSection = () => {
+type ServicesSectionProps = {
+  content: SiteContent["services"];
+};
+
+const ServicesSection = ({ content }: ServicesSectionProps) => {
   return (
     <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-background">
       <div className="container px-4 md:px-6 text-center">
         <div className="space-y-4 mb-12">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            Serviços Ofertados
-          </h2>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{content.title}</h2>
           <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mx-auto">
-            Conheça as modalidades de atendimento e serviços disponíveis para o seu bem-estar.
+            {content.description}
           </p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {/* Psicoterapia Individual Card */}
-          <Card className="flex flex-col h-full">
-            <CardHeader>
-              <CardTitle className="text-2xl font-semibold">Psicoterapia Individual</CardTitle>
-              <CardDescription className="text-lg text-primary">Adolescente e adultos</CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow flex flex-col justify-between">
-              <p className="text-muted-foreground mb-4">
-                A psicoterapia é um processo de autoconhecimento, crescimento e desenvolvimento pessoal, possibilitando a criação de hábitos saudáveis, aumentando a auto confiança, aprendendo a impor limites e desenvolvendo a inteligência emocional. Te ajuda a lidar com situações para além de transtornos mentais.
-              </p>
-              <Link href="#contact" className="mt-auto">
-                <Button className="w-full">AGENDAR SESSÃO</Button>
-              </Link>
-            </CardContent>
-          </Card>
+          {content.items.map((service, index) => (
+            <Card key={index} className="flex flex-col h-full">
+              <CardHeader>
+                <CardTitle className="text-2xl font-semibold">{service.title}</CardTitle>
+                {service.subtitle ? (
+                  <CardDescription className="text-lg text-primary">{service.subtitle}</CardDescription>
+                ) : null}
+              </CardHeader>
+              <CardContent className="flex-grow flex flex-col justify-between">
+                <p className="text-muted-foreground mb-4">{service.description}</p>
 
-          {/* Palestras Card */}
-          <Card className="flex flex-col h-full">
-            <CardHeader>
-              <CardTitle className="text-2xl font-semibold">Palestras</CardTitle>
-            </CardHeader>
-            <CardContent className="flex-grow flex flex-col justify-between">
-              <p className="text-muted-foreground mb-4">
-                As palestras possuem temas personalizados, de acordo com as necessidades da empresa ou instituição. Os temas como ansiedade, depressão e inteligência emocional, prevenção e promoção de cuidados relacionados à saúde mental, programas educacionais, culturais, desenvolvimento de habilidades, e qualidade de vida são os mais comuns. O principal objetivo das palestras é gerar um impacto positivo no grupo, garantindo a conexão com temas de grande importância para a saúde mental.
-              </p>
-              <Link href="#contact" className="mt-auto">
-                <Button className="w-full">ENTRAR EM CONTATO</Button>
-              </Link>
-            </CardContent>
-          </Card>
+                {service.details ? (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" className="w-full mt-4 mb-2">
+                        Detalhes
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>{service.details.title}</DialogTitle>
+                        <DialogDescription>{service.details.description}</DialogDescription>
+                      </DialogHeader>
+                      <ul className="text-muted-foreground list-disc list-inside space-y-2">
+                        {service.details.items.map((item, itemIndex) => (
+                          <li key={itemIndex}>{item}</li>
+                        ))}
+                      </ul>
+                    </DialogContent>
+                  </Dialog>
+                ) : null}
 
-          {/* Psicoterapia Casal Card */}
-          <Card className="flex flex-col h-full">
-            <CardHeader>
-              <CardTitle className="text-2xl font-semibold">Psicoterapia Casal</CardTitle>
-            </CardHeader>
-            <CardContent className="flex-grow flex flex-col justify-between">
-              <p className="text-muted-foreground mb-4">
-                O principal objetivo da terapia de casal é promover um espaço seguro de diálogo em que o casal possa expressar opiniões sobre situações que estão interferindo no relacionamento. A partir do olhar sistêmico observo as interações do casal, suas habilidades, padrões de comportamento, crenças familiares, e como lidam com os problemas. Com base nessas observações são sugeridas algumas intervenções que visam possibilitar a resolução de conflitos, treino de habilidades do casal, autoconhecimento e abrir um espaço de comunicação assertiva e não violenta, buscando um alinhamento entre as expectativas do casal. As sessões duram média de 1h (uma hora) à 1h30 (uma hora e trinta minutos) de acordo com a necessidade ou da atividade proposta em sessão.
-              </p>
-              
-              {/* Botão Detalhes para o Pop-up */}
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="outline" className="w-full mt-4 mb-2">Detalhes</Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
-                  <DialogHeader>
-                    <DialogTitle>Indicações para Terapia de Casal</DialogTitle>
-                    <DialogDescription>
-                      A terapia de casal é indicada para casais que:
-                    </DialogDescription>
-                  </DialogHeader>
-                  <ul className="text-muted-foreground list-disc list-inside space-y-2">
-                    <li>Desejam aprender como lidar com brigas.</li>
-                    <li>Superar a infidelidade e cultivar confiança e respeito.</li>
-                    <li>Alinhar expectativas sexuais e financeiras.</li>
-                    <li>Como uma última alternativa antes da separação.</li>
-                    <li>E para os que, mesmo em um relacionamento próspero, querem inovar e prevenir problemas futuros.</li>
-                  </ul>
-                </DialogContent>
-              </Dialog>
-
-              <Link href="#contact" className="mt-auto">
-                <Button className="w-full">AGENDAR SESSÃO</Button>
-              </Link>
-            </CardContent>
-          </Card>
+                <Link href="#contact" className="mt-auto">
+                  <Button className="w-full">{service.buttonLabel}</Button>
+                </Link>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>
