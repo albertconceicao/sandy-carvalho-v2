@@ -7,6 +7,7 @@ import * as z from "zod";
 import { toast } from "sonner";
 import { Star } from "lucide-react";
 
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -33,7 +34,7 @@ const testimonialFormSchema = z.object({
   testimonial: z.string().min(10, { message: "Seu depoimento deve ter pelo menos 10 caracteres." }),
 });
 
-const TestimonialFormDialog = () => {
+const TestimonialFormDialog = ({ triggerClassName }: { triggerClassName?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const form = useForm<z.infer<typeof testimonialFormSchema>>({
@@ -45,17 +46,30 @@ const TestimonialFormDialog = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof testimonialFormSchema>) => {
-    console.log("Depoimento enviado:", values);
-    toast.success("Seu depoimento foi enviado com sucesso! Agradecemos sua contribuição.");
-    form.reset();
-    setIsOpen(false); // Fecha o diálogo após o envio
+  const onSubmit = async (values: z.infer<typeof testimonialFormSchema>) => {
+    try {
+      const response = await fetch("/api/testimonials", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      toast.success("Seu depoimento foi enviado com sucesso! Agradecemos sua contribuição.");
+      form.reset();
+      setIsOpen(false);
+    } catch {
+      toast.error("Não foi possível enviar o depoimento. Tente novamente.");
+    }
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" className="border-primary text-primary hover:bg-accent hover:text-primary-foreground rounded-full px-6 py-2">
+        <Button variant="outline" className={cn("border-primary text-primary hover:bg-accent hover:text-primary-foreground rounded-full px-6 py-2", triggerClassName)}>
           Escrever Depoimento
         </Button>
       </DialogTrigger>

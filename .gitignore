@@ -23,6 +23,12 @@
 # misc
 .DS_Store
 *.pem
+cms/.tmp
+cms/node_modules
+cms/.cache
+cms/build
+cms/dist
+cms/public/uploads
 
 # debug
 npm-debug.log*

@@ -2,28 +2,34 @@ import AboutSection from "@/components/AboutSection";
 import ApproachSection from "@/components/ApproachSection";
 import ContactSection from "@/components/ContactSection";
 import FAQSection from "@/components/FAQSection";
-import Footer from "@/components/Footer"; // Importar o novo componente Footer
+import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import ModalitySection from "@/components/ModalitySection";
 import Navbar from "@/components/Navbar";
 import ServicesSection from "@/components/ServicesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import { siteContent } from "@/content/site";
+import { getApprovedTestimonials } from "@/lib/supabase/testimonials";
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function Home() {
+  const testimonials = await getApprovedTestimonials();
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
+    <div className="flex flex-col min-h-screen overflow-x-hidden">
+      <Navbar global={siteContent.global} />
       <main className="flex-grow">
-        <HeroSection />
-        <AboutSection />
-        <ApproachSection />
-        <ModalitySection />
-        <ServicesSection />
-        <FAQSection />
-        <TestimonialsSection />
-        <ContactSection />
+        <HeroSection content={siteContent.hero} />
+        <AboutSection content={siteContent.about} />
+        <ApproachSection content={siteContent.approach} />
+        <ModalitySection content={siteContent.modality} />
+        <ServicesSection content={siteContent.services} />
+        <FAQSection content={siteContent.faq} />
+        <TestimonialsSection content={siteContent.testimonials} testimonials={testimonials} />
+        <ContactSection global={siteContent.global} />
       </main>
-      <Footer /> {/* Adicionar o rodapé aqui, após MadeWithDyad */}
+      <Footer global={siteContent.global} />
     </div>
   );
 }
