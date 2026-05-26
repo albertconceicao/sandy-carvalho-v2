@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import type { SiteContent } from "@/lib/content/types";
+import type { SiteContent } from "@/content/types";
 
 type ServicesSectionProps = {
   content: SiteContent["services"];

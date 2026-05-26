@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import type { SiteContent } from "@/lib/content/types";
+import type { SiteContent } from "@/content/types";
 
 type NavbarProps = {
   global: SiteContent["global"];

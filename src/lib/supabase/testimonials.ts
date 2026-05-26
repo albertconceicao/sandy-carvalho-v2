@@ -1,5 +1,4 @@
-import { fallbackTestimonials } from "@/lib/content/fallback";
-import type { Testimonial } from "@/lib/content/types";
+import type { Testimonial } from "@/content/types";
 import { createSupabaseAdmin, isSupabaseConfigured } from "./server";
 import type { TestimonialRow } from "./types";
 
@@ -17,9 +16,21 @@ function mapTestimonial(row: TestimonialRow): Testimonial {
   };
 }
 
+function isMissingTableError(message: string) {
+  return (
+    message.includes("Could not find the table") ||
+    (message.includes("relation") && message.includes("does not exist"))
+  );
+}
+
 export async function getApprovedTestimonials(): Promise<Testimonial[]> {
   if (!isSupabaseConfigured()) {
-    return fallbackTestimonials;
+    if (process.env.NODE_ENV === "development") {
+      console.warn(
+        "[supabase] Depoimentos: configure NEXT_PUBLIC_SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY no .env.local",
+      );
+    }
+    return [];
   }
 
   try {
@@ -31,17 +42,20 @@ export async function getApprovedTestimonials(): Promise<Testimonial[]> {
       .order("created_at", { ascending: false });
 
     if (error) {
-      console.warn("[supabase] failed to fetch testimonials", error.message);
-      return fallbackTestimonials;
+      if (isMissingTableError(error.message)) {
+        console.error(
+          "[supabase] Tabela 'testimonials' não existe. Execute supabase/migrations/001_initial.sql no SQL Editor.",
+        );
+      } else {
+        console.error("[supabase] Erro ao buscar depoimentos:", error.message);
+      }
+      return [];
     }
 
-    if (!data?.length) {
-      return fallbackTestimonials;
-    }
-
-    return data.map(mapTestimonial);
+    return (data ?? []).map(mapTestimonial);
   } catch (error) {
-    console.warn("[supabase] testimonials unavailable", error);
-    return fallbackTestimonials;
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("[supabase] Depoimentos indisponíveis:", message);
+    return [];
   }
 }

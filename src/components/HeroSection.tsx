@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import type { SiteContent } from "@/lib/content/types";
+import type { SiteContent } from "@/content/types";
 import { SectionImage } from "./SectionImage";
 
 type HeroSectionProps = {

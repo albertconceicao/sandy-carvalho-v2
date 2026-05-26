@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 import TestimonialFormDialog from "./TestimonialFormDialog";
-import type { SiteContent } from "@/lib/content/types";
+import type { SiteContent } from "@/content/types";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Nome deve ter pelo menos 2 caracteres." }),

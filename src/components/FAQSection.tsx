@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import type { SiteContent } from "@/lib/content/types";
+import type { SiteContent } from "@/content/types";
 
 type FAQSectionProps = {
   content: SiteContent["faq"];

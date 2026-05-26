@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { ContentImage } from "@/lib/content/types";
+import type { ContentImage } from "@/content/types";
 
 type SectionImageProps = {
   image: ContentImage;

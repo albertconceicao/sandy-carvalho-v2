@@ -8,26 +8,28 @@ import ModalitySection from "@/components/ModalitySection";
 import Navbar from "@/components/Navbar";
 import ServicesSection from "@/components/ServicesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import { getSiteContent } from "@/lib/content";
+import { siteContent } from "@/content/site";
 import { getApprovedTestimonials } from "@/lib/supabase/testimonials";
 
+export const revalidate = 60;
+
 export default async function Home() {
-  const [content, testimonials] = await Promise.all([getSiteContent(), getApprovedTestimonials()]);
+  const testimonials = await getApprovedTestimonials();
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
-      <Navbar global={content.global} />
+      <Navbar global={siteContent.global} />
       <main className="flex-grow">
-        <HeroSection content={content.hero} />
-        <AboutSection content={content.about} />
-        <ApproachSection content={content.approach} />
-        <ModalitySection content={content.modality} />
-        <ServicesSection content={content.services} />
-        <FAQSection content={content.faq} />
-        <TestimonialsSection content={content.testimonials} testimonials={testimonials} />
-        <ContactSection global={content.global} />
+        <HeroSection content={siteContent.hero} />
+        <AboutSection content={siteContent.about} />
+        <ApproachSection content={siteContent.approach} />
+        <ModalitySection content={siteContent.modality} />
+        <ServicesSection content={siteContent.services} />
+        <FAQSection content={siteContent.faq} />
+        <TestimonialsSection content={siteContent.testimonials} testimonials={testimonials} />
+        <ContactSection global={siteContent.global} />
       </main>
-      <Footer global={content.global} />
+      <Footer global={siteContent.global} />
     </div>
   );
 }
