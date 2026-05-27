@@ -14,7 +14,7 @@ export default async function AdminDashboardPage() {
     return (
       <AdminMessage
         title="Supabase não configurado"
-        description="Configure NEXT_PUBLIC_SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY para ver os dados."
+        description="Configure SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY para ver os dados."
       />
     );
   }

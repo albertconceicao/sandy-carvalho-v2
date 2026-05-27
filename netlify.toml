@@ -1,0 +1,9 @@
+[build]
+  command = "pnpm run build"
+  publish = ".next"
+
+# NEXT_PUBLIC_* may appear in server bundles at build time; the Supabase project URL is not secret.
+# Service role key must never be omitted — only list public / expected keys here.
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SUPABASE_URL,SUPABASE_URL"
+  SECRETS_SCAN_OMIT_PATHS = ".netlify/.next/cache/**,.next/cache/**"

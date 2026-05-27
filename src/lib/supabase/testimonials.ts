@@ -27,7 +27,7 @@ export async function getApprovedTestimonials(): Promise<Testimonial[]> {
   if (!isSupabaseConfigured()) {
     if (process.env.NODE_ENV === "development") {
       console.warn(
-        "[supabase] Depoimentos: configure NEXT_PUBLIC_SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY no .env.local",
+        "[supabase] Depoimentos: configure SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY no .env.local",
       );
     }
     return [];
