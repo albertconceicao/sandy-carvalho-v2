@@ -31,9 +31,20 @@ export async function strapiFetch<T>(path: string, init?: RequestInit): Promise<
       next: { revalidate: 60 },
     });
 
+    const contentType = response.headers.get("content-type") ?? "";
+
     if (!response.ok) {
       if (process.env.NODE_ENV === "development") {
         console.warn(`[strapi] ${path} → HTTP ${response.status}`);
+      }
+      return null;
+    }
+
+    if (!contentType.includes("application/json")) {
+      if (process.env.NODE_ENV === "development") {
+        console.warn(
+          `[strapi] ${path} → resposta não é JSON (verifique STRAPI_URL, sem /admin). Content-Type: ${contentType}`,
+        );
       }
       return null;
     }
