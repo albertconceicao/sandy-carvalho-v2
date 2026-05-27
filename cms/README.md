@@ -57,3 +57,14 @@ pnpm dev
 ```
 
 Blog: http://localhost:3000/blog
+
+## Strapi Cloud (monorepo)
+
+No painel do Strapi Cloud, configure:
+
+| Campo | Valor |
+|--------|--------|
+| **Base directory** | `cms` |
+| **Node** | 22 ou 24 (evite 25) |
+
+O repositório é monorepo: o Next fica na raiz e o Strapi em `cms/`. O arquivo `cms/postcss.config.mjs` existe para o build **não** herdar o Tailwind do `postcss.config.mjs` da raiz (erro `Cannot find module 'tailwindcss'`).
