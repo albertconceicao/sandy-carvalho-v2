@@ -15,6 +15,8 @@ function formatDate(isoDate: string) {
   }).format(new Date(isoDate));
 }
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Blog | Sandy Carvalho",
   description: "Artigos sobre psicologia, saúde mental e bem-estar.",
