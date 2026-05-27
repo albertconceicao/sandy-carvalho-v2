@@ -14,7 +14,7 @@ Sem esse passo você verá: `Could not find the table 'public.testimonials'`.
 No `.env.local` da raiz:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
+SUPABASE_URL=https://xxxx.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
 ```
 
