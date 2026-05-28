@@ -42,6 +42,25 @@ export type Database = {
         Update: Partial<TestimonialInsert & { status: "pending" | "approved" | "rejected" }>;
         Relationships: [];
       };
+      rate_limit_events: {
+        Row: {
+          id: string;
+          ip_hash: string;
+          route: string;
+          created_at: string;
+        };
+        Insert: {
+          ip_hash: string;
+          route: string;
+          id?: string;
+          created_at?: string;
+        };
+        Update: Partial<{
+          ip_hash: string;
+          route: string;
+        }>;
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { toast } from "sonner";
+import { testimonialSchema, type TestimonialFormValues } from "@/lib/forms/testimonial";
 import { Star } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -28,25 +28,28 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-const testimonialFormSchema = z.object({
-  name: z.string().min(2, { message: "Nome deve ter pelo menos 2 caracteres." }),
-  rating: z.number().min(1, { message: "Por favor, dê uma nota de 1 a 5 estrelas." }).max(5),
-  testimonial: z.string().min(10, { message: "Seu depoimento deve ter pelo menos 10 caracteres." }),
-});
+type TestimonialFormDialogProps = {
+  triggerClassName?: string;
+  /** Use on sections with `bg-primary` so the trigger stays visible */
+  onPrimaryBackground?: boolean;
+};
 
-const TestimonialFormDialog = ({ triggerClassName }: { triggerClassName?: string }) => {
+const TestimonialFormDialog = ({
+  triggerClassName,
+  onPrimaryBackground = false,
+}: TestimonialFormDialogProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const form = useForm<z.infer<typeof testimonialFormSchema>>({
-    resolver: zodResolver(testimonialFormSchema),
+  const form = useForm<TestimonialFormValues>({
+    resolver: zodResolver(testimonialSchema),
     defaultValues: {
       name: "",
-      rating: 0,
       testimonial: "",
+      rating: undefined,
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof testimonialFormSchema>) => {
+  const onSubmit = async (values: TestimonialFormValues) => {
     try {
       const response = await fetch("/api/testimonials", {
         method: "POST",
@@ -69,7 +72,17 @@ const TestimonialFormDialog = ({ triggerClassName }: { triggerClassName?: string
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" className={cn("border-primary text-primary hover:bg-accent hover:text-primary-foreground rounded-full px-6 py-2", triggerClassName)}>
+        <Button
+          type="button"
+          variant="outline"
+          className={cn(
+            "rounded-full px-6 py-2",
+            onPrimaryBackground
+              ? "border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+              : "border-primary text-primary hover:bg-accent hover:text-primary-foreground",
+            triggerClassName,
+          )}
+        >
           Escrever Depoimento
         </Button>
       </DialogTrigger>
@@ -81,7 +94,12 @@ const TestimonialFormDialog = ({ triggerClassName }: { triggerClassName?: string
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form
+            onSubmit={form.handleSubmit(onSubmit, () => {
+              toast.error("Preencha todos os campos, incluindo a avaliação com estrelas.");
+            })}
+            className="space-y-4"
+          >
             <FormField
               control={form.control}
               name="name"

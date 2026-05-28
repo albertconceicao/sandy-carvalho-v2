@@ -1,10 +1,9 @@
+import { formatAdminDate, getContactSubmissions } from "@/lib/admin/data";
 import {
-  formatAdminDate,
   getAvailabilityLabel,
-  getContactSubmissions,
   getServiceLabel,
   getTherapyBeforeLabel,
-} from "@/lib/admin/data";
+} from "@/lib/content/labels";
 import { isSupabaseConfigured } from "@/lib/supabase/server";
 export const metadata = {
   title: "Contatos — Admin",

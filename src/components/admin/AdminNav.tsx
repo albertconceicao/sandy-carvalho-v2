@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, MessageSquareQuote, Users } from "lucide-react";
+import { ExternalLink, LayoutDashboard, MessageSquareQuote, Newspaper, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -11,7 +11,11 @@ const navItems = [
   { href: "/admin/contacts", label: "Contatos", icon: Users },
 ] as const;
 
-export function AdminNav() {
+type AdminNavProps = {
+  strapiAdminUrl?: string;
+};
+
+export function AdminNav({ strapiAdminUrl }: AdminNavProps) {
   const pathname = usePathname();
 
   return (
@@ -36,6 +40,18 @@ export function AdminNav() {
           </Link>
         );
       })}
+      {strapiAdminUrl ? (
+        <a
+          href={strapiAdminUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex shrink-0 items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-secondary-foreground"
+        >
+          <Newspaper className="h-4 w-4" />
+          Blog (Strapi)
+          <ExternalLink className="ml-auto h-3.5 w-3.5 opacity-60" />
+        </a>
+      ) : null}
     </nav>
   );
 }

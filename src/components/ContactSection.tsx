@@ -10,34 +10,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Instagram, Mail } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import * as z from "zod";
+import { contactSchema, type ContactFormValues } from "@/lib/forms/contact";
 import TestimonialFormDialog from "./TestimonialFormDialog";
 import type { SiteContent } from "@/content/types";
-
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Nome deve ter pelo menos 2 caracteres." }),
-  whatsapp: z.string().min(10, { message: "WhatsApp inválido." }),
-  email: z.string().email({ message: "Email inválido." }),
-  service: z.enum(["individual_adolescent", "individual_adult", "couple", "family", "lectures"], {
-    errorMap: () => ({ message: "Selecione um serviço." }),
-  }),
-  reason: z.string().optional(), // Conditionally required
-  availability: z.enum(["morning", "afternoon", "night"], {
-    errorMap: () => ({ message: "Selecione um período." }),
-  }),
-  therapyBefore: z.enum(["yes", "no"], {
-    errorMap: () => ({ message: "Selecione uma opção." }),
-  }),
-  message: z.string().optional(),
-});
 
 type ContactSectionProps = {
   global: SiteContent["global"];
 };
 
 const ContactSection = ({ global }: ContactSectionProps) => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactSchema),
     defaultValues: {
       name: "",
       whatsapp: "",
@@ -53,7 +36,7 @@ const ContactSection = ({ global }: ContactSectionProps) => {
   const selectedService = form.watch("service");
   const showReasonField = selectedService && selectedService !== "lectures";
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: ContactFormValues) => {
     try {
       const response = await fetch("/api/contact", {
         method: "POST",

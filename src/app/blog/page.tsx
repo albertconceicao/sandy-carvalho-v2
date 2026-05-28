@@ -46,9 +46,8 @@ export default async function BlogPage() {
           </div>
 
           {posts.length === 0 ? (
-            <p className="text-muted-foreground">
-              Nenhum post publicado ainda. Configure o Strapi e publique artigos em{" "}
-              <code className="text-sm bg-muted px-1.5 py-0.5 rounded">Post</code>.
+            <p className="max-w-xl text-muted-foreground md:text-lg">
+              Em breve, novos artigos sobre psicologia, relacionamentos e saúde mental. Volte em breve!
             </p>
           ) : (
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

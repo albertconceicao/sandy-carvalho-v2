@@ -99,7 +99,7 @@ const TestimonialsSection = ({ content, testimonials }: TestimonialsSectionProps
         )}
 
         <div className="mt-12">
-          <TestimonialFormDialog />
+          <TestimonialFormDialog onPrimaryBackground />
         </div>
       </div>
     </section>
