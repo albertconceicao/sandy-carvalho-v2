@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { contactSchema, type ContactFormValues } from "@/lib/forms/contact";
 import TestimonialFormDialog from "./TestimonialFormDialog";
 import type { SiteContent } from "@/content/types";
+import { Section } from "./Section";
 
 type ContactSectionProps = {
   global: SiteContent["global"];
@@ -56,15 +57,19 @@ const ContactSection = ({ global }: ContactSectionProps) => {
   };
 
   return (
-    <section id="contact" className="w-full scroll-mt-16 py-12 md:py-24 lg:py-32 bg-secondary overflow-x-hidden">
-      <div className="container px-4 md:px-6 grid gap-8 lg:grid-cols-2 lg:gap-12 items-start">
+    <Section
+      id="contact"
+      tone="featured"
+      className="overflow-x-hidden"
+      containerClassName="grid gap-10 lg:grid-cols-2 lg:gap-14 items-start"
+    >
         {/* Left Side: Contact Info */}
         <div className="flex w-full min-w-0 flex-col justify-center space-y-4 text-center lg:text-left">
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-foreground">
               {global.contactTitle}
             </h2>
-            <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mx-auto lg:mx-0">
+            <p className="max-w-[700px] text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed mx-auto lg:mx-0">
               {global.contactSubtitle}
             </p>
           </div>
@@ -85,9 +90,9 @@ const ContactSection = ({ global }: ContactSectionProps) => {
         </div>
 
         {/* Right Side: Contact Form */}
-        <div className="w-full min-w-0 max-w-2xl mx-auto lg:mx-0 bg-card p-4 sm:p-8 rounded-lg shadow-lg">
+        <div className="w-full min-w-0 max-w-2xl mx-auto lg:mx-0 bg-card/80 backdrop-blur-sm p-4 sm:p-8 rounded-xl shadow-md ring-1 ring-border/50">
           <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3 mb-6 w-full">
-            <Button className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 py-2">
+            <Button className="w-full sm:w-auto rounded-full px-6 py-2">
               Entre Em Contato
             </Button>
             <TestimonialFormDialog triggerClassName="w-full sm:w-auto" />
@@ -267,8 +272,7 @@ const ContactSection = ({ global }: ContactSectionProps) => {
             </form>
           </Form>
         </div>
-      </div>
-    </section>
+    </Section>
   );
 };
 

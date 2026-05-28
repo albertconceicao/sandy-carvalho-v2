@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
 import type { SiteContent } from "@/content/types";
 import { SectionImage } from "./SectionImage";
+import { Section } from "./Section";
 
 type ModalitySectionProps = {
   content: SiteContent["modality"];
@@ -9,18 +10,17 @@ type ModalitySectionProps = {
 
 const ModalitySection = ({ content }: ModalitySectionProps) => {
   return (
-    <section id="modality" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-      <div className="container px-4 md:px-6 grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
+    <Section id="modality" tone="default" containerClassName="grid gap-10 lg:grid-cols-2 lg:gap-14 items-center">
         <div className="flex flex-col justify-center space-y-8 lg:text-left">
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{content.title}</h2>
-            <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mx-auto lg:mx-0">
+            <p className="max-w-[700px] text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed mx-auto lg:mx-0">
               {content.description}
             </p>
           </div>
 
           <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-1">
-            <Card className="bg-muted/50">
+            <Card className="bg-background/50">
               <CardHeader>
                 <CardTitle className="text-2xl font-semibold">{content.requirementsTitle}</CardTitle>
               </CardHeader>
@@ -36,7 +36,7 @@ const ModalitySection = ({ content }: ModalitySectionProps) => {
               </CardContent>
             </Card>
 
-            <Card className="bg-muted/50">
+            <Card className="bg-background/50">
               <CardHeader>
                 <CardTitle className="text-2xl font-semibold">{content.advantagesTitle}</CardTitle>
               </CardHeader>
@@ -53,11 +53,10 @@ const ModalitySection = ({ content }: ModalitySectionProps) => {
             </Card>
           </div>
         </div>
-        <div className="relative h-[300px] w-full lg:h-[450px] rounded-lg overflow-hidden shadow-lg">
+        <div className="relative h-[300px] w-full lg:h-[450px] rounded-xl overflow-hidden shadow-md ring-1 ring-border/40">
           <SectionImage image={content.image} className="rounded-lg object-cover" />
         </div>
-      </div>
-    </section>
+    </Section>
   );
 };
 

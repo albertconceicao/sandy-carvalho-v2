@@ -10,6 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import type { SiteContent } from "@/content/types";
+import { Section } from "./Section";
 
 type ServicesSectionProps = {
   content: SiteContent["services"];
@@ -17,11 +18,10 @@ type ServicesSectionProps = {
 
 const ServicesSection = ({ content }: ServicesSectionProps) => {
   return (
-    <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-background">
-      <div className="container px-4 md:px-6 text-center">
+    <Section id="services" tone="subtle" containerClassName="text-center">
         <div className="space-y-4 mb-12">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{content.title}</h2>
-          <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mx-auto">
+          <p className="max-w-[900px] text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed mx-auto">
             {content.description}
           </p>
         </div>
@@ -66,8 +66,7 @@ const ServicesSection = ({ content }: ServicesSectionProps) => {
             </Card>
           ))}
         </div>
-      </div>
-    </section>
+    </Section>
   );
 };
 

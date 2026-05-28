@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import type { SiteContent } from "@/content/types";
+import { Section } from "./Section";
 
 type FAQSectionProps = {
   content: SiteContent["faq"];
@@ -14,8 +15,7 @@ type FAQSectionProps = {
 
 const FAQSection = ({ content }: FAQSectionProps) => {
   return (
-    <section id="faq" className="w-full scroll-mt-16 py-12 md:py-24 lg:py-32 bg-muted">
-      <div className="container px-4 md:px-6 grid gap-8 lg:grid-cols-2 lg:gap-12 items-start">
+    <Section id="faq" tone="default" containerClassName="grid gap-10 lg:grid-cols-2 lg:gap-14 items-start">
         <div className="flex flex-col justify-center space-y-4 text-center lg:text-left">
           <div className="space-y-2">
             <p className="text-lg font-semibold text-primary">{content.eyebrow}</p>
@@ -28,7 +28,7 @@ const FAQSection = ({ content }: FAQSectionProps) => {
           </div>
         </div>
         <div className="w-full max-w-2xl mx-auto lg:mx-0">
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full rounded-xl border bg-card/60 p-2">
             {content.items.map((item, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
                 <AccordionTrigger className="text-left">{item.question}</AccordionTrigger>
@@ -46,8 +46,7 @@ const FAQSection = ({ content }: FAQSectionProps) => {
             ))}
           </Accordion>
         </div>
-      </div>
-    </section>
+    </Section>
   );
 };
 
