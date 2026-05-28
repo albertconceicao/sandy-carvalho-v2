@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
 import type { SiteContent } from "@/content/types";
 import { SectionImage } from "./SectionImage";
+import { SectionWatermark } from "@/components/motion/SectionWatermark";
 
 type ModalitySectionProps = {
   content: SiteContent["modality"];
@@ -9,7 +10,8 @@ type ModalitySectionProps = {
 
 const ModalitySection = ({ content }: ModalitySectionProps) => {
   return (
-    <section id="modality" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
+    <section id="modality" className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32 bg-muted">
+      <SectionWatermark position="bottom" align="left" />
       <div className="container px-4 md:px-6 grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
         <div className="flex flex-col justify-center space-y-8 lg:text-left">
           <div className="space-y-4">

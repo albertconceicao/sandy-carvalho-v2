@@ -1,5 +1,6 @@
 import type { SiteContent } from "@/content/types";
 import { SectionImage } from "./SectionImage";
+import { SectionWatermark } from "@/components/motion/SectionWatermark";
 
 type AboutSectionProps = {
   content: SiteContent["about"];
@@ -7,7 +8,8 @@ type AboutSectionProps = {
 
 const AboutSection = ({ content }: AboutSectionProps) => {
   return (
-    <section id="about" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
+    <section id="about" className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32 bg-muted">
+      <SectionWatermark position="center" align="left" />
       <div className="container px-4 md:px-6 grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
         <div className="relative h-[300px] w-full lg:h-[450px] rounded-lg overflow-hidden shadow-lg">
           <SectionImage image={content.image} className="rounded-lg object-cover" />

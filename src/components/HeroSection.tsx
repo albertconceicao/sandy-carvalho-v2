@@ -2,6 +2,10 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { SiteContent } from "@/content/types";
 import { SectionImage } from "./SectionImage";
+import { Reveal } from "@/components/motion/Reveal";
+import { HeroRootsBackdrop } from "@/components/motion/HeroRootsBackdrop";
+import { HeroTreeWatermark } from "@/components/motion/HeroTreeWatermark";
+import { HeroLeavesOverlay } from "@/components/motion/HeroLeavesOverlay";
 
 type HeroSectionProps = {
   content: SiteContent["hero"];
@@ -10,8 +14,11 @@ type HeroSectionProps = {
 const HeroSection = ({ content }: HeroSectionProps) => {
   return (
     <section id="hero" className="relative w-full py-12 md:py-24 lg:py-32 bg-background">
+      <HeroRootsBackdrop />
+      <HeroTreeWatermark />
+      <HeroLeavesOverlay />
       <div className="container px-4 md:px-6 grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
-        <div className="flex flex-col justify-center space-y-4 text-center lg:text-left">
+        <Reveal className="flex flex-col justify-center space-y-4 text-center lg:text-left" y={14}>
           <div className="space-y-2">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">{content.title}</h1>
             <p className="max-w-[600px] text-muted-foreground md:text-xl mx-auto lg:mx-0">{content.subtitle}</p>
@@ -28,10 +35,10 @@ const HeroSection = ({ content }: HeroSectionProps) => {
               </Button>
             </Link>
           </div>
-        </div>
-        <div className="relative h-[300px] w-full lg:h-[450px] rounded-lg overflow-hidden shadow-lg">
+        </Reveal>
+        <Reveal className="relative h-[300px] w-full lg:h-[450px] rounded-lg overflow-hidden shadow-lg" delay={0.08} y={10}>
           <SectionImage image={content.image} className="rounded-lg object-cover" priority />
-        </div>
+        </Reveal>
       </div>
     </section>
   );

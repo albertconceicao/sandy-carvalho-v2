@@ -8,6 +8,8 @@ import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { useCallback } from "react";
 import type { SiteContent, Testimonial } from "@/content/types";
 import TestimonialFormDialog from "./TestimonialFormDialog";
+import { Reveal } from "@/components/motion/Reveal";
+import { SectionWatermark } from "@/components/motion/SectionWatermark";
 
 type TestimonialsSectionProps = {
   content: SiteContent["testimonials"];
@@ -32,12 +34,13 @@ const TestimonialsSection = ({ content, testimonials }: TestimonialsSectionProps
 
   return (
     <section id="testimonials" className="relative w-full overflow-x-hidden py-12 md:py-24 lg:py-32 bg-primary text-primary-foreground">
+      <SectionWatermark className="opacity-[0.10]" position="center" align="left" />
       <div className="container px-4 md:px-6 text-center">
-        <div className="space-y-4 mb-12">
+        <Reveal className="space-y-4 mb-12" y={12}>
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primary-foreground">
             {content.title}
           </h2>
-        </div>
+        </Reveal>
 
         {hasTestimonials ? (
           <div className="relative">

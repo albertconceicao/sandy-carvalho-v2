@@ -1,0 +1,4 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+storeDir: /Users/albertconceicao/Library/pnpm/store/v10/v11

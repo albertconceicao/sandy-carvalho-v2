@@ -10,6 +10,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import type { SiteContent } from "@/content/types";
+import { Reveal } from "@/components/motion/Reveal";
+import { SectionWatermark } from "@/components/motion/SectionWatermark";
 
 type ServicesSectionProps = {
   content: SiteContent["services"];
@@ -17,14 +19,15 @@ type ServicesSectionProps = {
 
 const ServicesSection = ({ content }: ServicesSectionProps) => {
   return (
-    <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-background">
+    <section id="services" className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32 bg-background">
+      <SectionWatermark position="top" align="right" />
       <div className="container px-4 md:px-6 text-center">
-        <div className="space-y-4 mb-12">
+        <Reveal className="space-y-4 mb-12" y={12}>
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{content.title}</h2>
           <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mx-auto">
             {content.description}
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {content.items.map((service, index) => (

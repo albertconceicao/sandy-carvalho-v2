@@ -7,6 +7,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import type { SiteContent } from "@/content/types";
+import { Reveal } from "@/components/motion/Reveal";
+import { SectionWatermark } from "@/components/motion/SectionWatermark";
 
 type FAQSectionProps = {
   content: SiteContent["faq"];
@@ -14,9 +16,10 @@ type FAQSectionProps = {
 
 const FAQSection = ({ content }: FAQSectionProps) => {
   return (
-    <section id="faq" className="w-full scroll-mt-16 py-12 md:py-24 lg:py-32 bg-muted">
+    <section id="faq" className="relative w-full scroll-mt-16 overflow-hidden py-12 md:py-24 lg:py-32 bg-muted">
+      <SectionWatermark position="center" align="right" />
       <div className="container px-4 md:px-6 grid gap-8 lg:grid-cols-2 lg:gap-12 items-start">
-        <div className="flex flex-col justify-center space-y-4 text-center lg:text-left">
+        <Reveal className="flex flex-col justify-center space-y-4 text-center lg:text-left" y={12}>
           <div className="space-y-2">
             <p className="text-lg font-semibold text-primary">{content.eyebrow}</p>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{content.title}</h2>
@@ -26,7 +29,7 @@ const FAQSection = ({ content }: FAQSectionProps) => {
               <Button size="lg">{content.ctaLabel}</Button>
             </Link>
           </div>
-        </div>
+        </Reveal>
         <div className="w-full max-w-2xl mx-auto lg:mx-0">
           <Accordion type="single" collapsible className="w-full">
             {content.items.map((item, index) => (

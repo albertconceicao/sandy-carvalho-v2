@@ -8,6 +8,7 @@ import ModalitySection from "@/components/ModalitySection";
 import Navbar from "@/components/Navbar";
 import ServicesSection from "@/components/ServicesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import { RootDivider } from "@/components/motion/RootDivider";
 import { siteContent } from "@/content/site";
 import { getApprovedTestimonials } from "@/lib/supabase/testimonials";
 
@@ -21,6 +22,7 @@ export default async function Home() {
       <Navbar global={siteContent.global} />
       <main className="flex-grow">
         <HeroSection content={siteContent.hero} />
+        <RootDivider variant="hero" />
         <AboutSection content={siteContent.about} />
         <ApproachSection content={siteContent.approach} />
         <ModalitySection content={siteContent.modality} />
