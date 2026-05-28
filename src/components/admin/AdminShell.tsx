@@ -7,8 +7,20 @@ type AdminShellProps = {
   children: React.ReactNode;
 };
 
+function safeStrapiAdminUrl(raw: string | undefined) {
+  if (!raw) return undefined;
+  const trimmed = raw.replace(/\/$/, "");
+  try {
+    const url = new URL(trimmed);
+    if (url.protocol === "http:" || url.protocol === "https:") return trimmed;
+  } catch {
+    return undefined;
+  }
+  return undefined;
+}
+
 export function AdminShell({ children }: AdminShellProps) {
-  const strapiAdminUrl = process.env.STRAPI_ADMIN_URL?.replace(/\/$/, "");
+  const strapiAdminUrl = safeStrapiAdminUrl(process.env.STRAPI_ADMIN_URL);
 
   return (
     <div className="min-h-screen bg-background text-foreground">

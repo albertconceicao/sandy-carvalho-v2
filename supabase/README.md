@@ -9,20 +9,30 @@ Banco para **dados enviados pelos visitantes** (formulário de contato e depoime
    - [`migrations/001_initial.sql`](migrations/001_initial.sql)
    - [`migrations/002_rate_limit.sql`](migrations/002_rate_limit.sql)
 
-Sem o passo 1 você verá: `Could not find the table 'public.testimonials'`.  
-Sem o passo 2 o rate limit falha em silêncio (formulários continuam funcionando).
+Sem executar `001_initial.sql` você verá: `Could not find the table 'public.testimonials'`.  
+Sem executar `002_rate_limit.sql` o rate limit falha em silêncio (formulários continuam funcionando).
 
 ## 2. Variáveis de ambiente
 
-Copie [`.env.example`](../.env.example) para `.env.local` na raiz do Next.js.
-
-Mínimo para formulários e painel:
+Crie ou edite `.env.local` na raiz do Next.js com:
 
 ```env
+# Supabase + painel (obrigatório para formulários e /admin)
 SUPABASE_URL=https://xxxx.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
 ADMIN_PASSWORD=sua-senha-forte
 ADMIN_SESSION_SECRET=string-longa-aleatoria
+
+# Produção: links absolutos nos emails de notificação
+SITE_URL=https://sandycarvalho.com.br
+
+# Email (Resend) — opcional; sem isso os formulários ainda salvam no banco
+RESEND_API_KEY=re_...
+RESEND_FROM_EMAIL=notificacoes@sandycarvalho.com.br
+NOTIFY_EMAIL=contato@sandycarvalho.com.br
+
+# Link "Blog (Strapi)" no menu do /admin — ver também cms/README.md
+STRAPI_ADMIN_URL=https://seu-strapi/admin
 ```
 
 A **service role key** fica em **Project Settings → API**. Use apenas no servidor (API Routes do Next.js). Nunca exponha no client.
@@ -82,5 +92,5 @@ São **dois logins** diferentes (Strapi e senha do `/admin`). O texto completo d
 ## Deploy (Netlify + Supabase)
 
 1. Rodar as duas migrations no projeto Supabase de **produção**.
-2. Configurar no Netlify: `SUPABASE_*`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`, `SITE_URL`, `STRAPI_*`, `RESEND_*` (ver `.env.example`).
+2. Configurar no Netlify as variáveis da **seção 2** (Supabase, admin, `SITE_URL`, Resend, `STRAPI_ADMIN_URL`).
 3. Verificar domínio no [Resend](https://resend.com) para `RESEND_FROM_EMAIL`.

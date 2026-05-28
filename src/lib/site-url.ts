@@ -13,6 +13,6 @@ export function getSiteUrl() {
 
 export function adminUrl(path: string) {
   const base = getSiteUrl();
-  if (!base) return path;
+  if (!base) return "";
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }

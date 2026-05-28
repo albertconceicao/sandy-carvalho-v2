@@ -36,7 +36,9 @@ export async function notifyNewContact(input: {
     `Email: ${input.email}`,
     wa ? `WhatsApp: ${wa}` : `WhatsApp: ${input.whatsapp}`,
     "",
-    `Ver detalhes no painel: ${panelUrl}`,
+    panelUrl
+      ? `Ver detalhes no painel: ${panelUrl}`
+      : "Acesse o painel /admin/contacts no site.",
   ].join("\n");
 
   const html = [
@@ -70,7 +72,9 @@ export async function notifyNewTestimonial(input: { name: string; rating: number
     "",
     "O texto completo só aparece no painel após revisão.",
     "",
-    `Moderar depoimentos: ${panelUrl}`,
+    panelUrl
+      ? `Moderar depoimentos: ${panelUrl}`
+      : "Acesse o painel /admin/testimonials no site.",
   ].join("\n");
 
   const html = [

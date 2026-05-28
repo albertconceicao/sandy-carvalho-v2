@@ -5,6 +5,9 @@ import { isSupabaseConfigured } from "@/lib/supabase/server";
 
 type PersistResult = { error: { message: string } | null };
 
+const INVALID_BODY_MESSAGE =
+  "Algo deu errado com os dados, verifica e manda novamente.";
+
 export type PublicFormIntakeConfig<T> = {
   route: RateLimitRoute;
   schema: z.ZodType<T>;
@@ -46,8 +49,8 @@ export async function handlePublicFormPost<T>(
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: "Dados inválidos." }, { status: 400 });
+    if (error instanceof SyntaxError || error instanceof z.ZodError) {
+      return NextResponse.json({ error: INVALID_BODY_MESSAGE }, { status: 400 });
     }
 
     console.error(`[${config.logPrefix}] unexpected error`, error);

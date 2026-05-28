@@ -45,6 +45,7 @@ const TestimonialFormDialog = ({
     defaultValues: {
       name: "",
       testimonial: "",
+      rating: undefined,
     },
   });
 
@@ -61,7 +62,7 @@ const TestimonialFormDialog = ({
       }
 
       toast.success("Seu depoimento foi enviado com sucesso! Agradecemos sua contribuição.");
-      form.reset({ name: "", testimonial: "" });
+      form.reset();
       setIsOpen(false);
     } catch {
       toast.error("Não foi possível enviar o depoimento. Tente novamente.");
