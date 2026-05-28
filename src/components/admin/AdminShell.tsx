@@ -8,6 +8,8 @@ type AdminShellProps = {
 };
 
 export function AdminShell({ children }: AdminShellProps) {
+  const strapiAdminUrl = process.env.STRAPI_ADMIN_URL?.replace(/\/$/, "");
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto flex min-h-screen max-w-7xl flex-col lg:flex-row">
@@ -28,7 +30,7 @@ export function AdminShell({ children }: AdminShellProps) {
               </Button>
             </form>
           </div>
-          <AdminNav />
+          <AdminNav strapiAdminUrl={strapiAdminUrl || undefined} />
         </aside>
 
         <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">{children}</main>

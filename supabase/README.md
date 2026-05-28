@@ -1,61 +1,86 @@
 # Supabase — Sandy Carvalho
 
-Banco para **dados enviados pelos visitantes** (formulário de contato e depoimentos).
+Banco para **dados enviados pelos visitantes** (formulário de contato e depoimentos) e **rate limit** dos formulários.
 
 ## 1. Criar projeto
 
 1. Acesse [supabase.com](https://supabase.com) e crie um projeto.
-2. Em **SQL Editor → New query**, cole e execute todo o conteúdo de [`migrations/001_initial.sql`](migrations/001_initial.sql).
+2. Em **SQL Editor → New query**, execute na ordem:
+   - [`migrations/001_initial.sql`](migrations/001_initial.sql)
+   - [`migrations/002_rate_limit.sql`](migrations/002_rate_limit.sql)
 
-Sem esse passo você verá: `Could not find the table 'public.testimonials'`.
+Sem o passo 1 você verá: `Could not find the table 'public.testimonials'`.  
+Sem o passo 2 o rate limit falha em silêncio (formulários continuam funcionando).
 
 ## 2. Variáveis de ambiente
 
-No `.env.local` da raiz:
+Copie [`.env.example`](../.env.example) para `.env.local` na raiz do Next.js.
+
+Mínimo para formulários e painel:
 
 ```env
 SUPABASE_URL=https://xxxx.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
+ADMIN_PASSWORD=sua-senha-forte
+ADMIN_SESSION_SECRET=string-longa-aleatoria
 ```
 
 A **service role key** fica em **Project Settings → API**. Use apenas no servidor (API Routes do Next.js). Nunca exponha no client.
 
-## 3. Painel admin
+Em **produção (Netlify)**, use o mesmo par de variáveis no painel do site.
 
-No `.env.local`, defina também:
+## 3. Painel admin do site
 
-```env
-ADMIN_PASSWORD=sua-senha-forte
-```
-
-Acesse **`/admin`** no site (em desenvolvimento: `http://localhost:9002/admin`). Lá você pode:
+Acesse **`/admin`** (ex.: `https://sandycarvalho.com.br/admin`).
 
 - Aprovar, rejeitar ou excluir depoimentos
-- Ver todas as solicitações de atendimento do formulário de contato
+- Ver solicitações de atendimento do formulário de contato
+- Link **Blog (Strapi)** no menu (se `STRAPI_ADMIN_URL` estiver configurada no Netlify)
 
 ## 4. Fluxo de depoimentos
 
 1. Visitante envia depoimento → salvo com `status = pending`
-2. Sandy aprova no painel **`/admin/testimonials`** (ou no Table Editor do Supabase)
-3. O site lista apenas depoimentos `approved` (via `getApprovedTestimonials`)
+2. Sandy recebe email (se Resend estiver configurado)
+3. Sandy aprova em **`/admin/testimonials`**
+4. O site lista apenas depoimentos `approved`
 
 ## 5. Contatos
 
-Submissões ficam em `contact_submissions` e aparecem em **`/admin/contacts`**.
+Submissões ficam em `contact_submissions`, aparecem em **`/admin/contacts`**, e disparam email de resumo (com link para o painel e WhatsApp clicável).
 
-## 6. Sem Supabase configurado ou sem depoimentos aprovados
+## 6. Rate limit
 
-- Formulários retornam erro amigável se o Supabase não estiver configurado
-- A seção de depoimentos na home lista apenas registros com `status = approved` no banco; se não houver nenhum, mostra uma mensagem placeholder
+Cada IP pode enviar até **3** formulários por hora (contato e depoimento contam separadamente). Eventos ficam em `rate_limit_events`.
 
 ## Tabelas
 
 | Tabela | Uso |
 |--------|-----|
 | `contact_submissions` | Formulário "Entre em contato" |
-| `testimonials` | Depoimentos enviados (pending → approved) |
+| `testimonials` | Depoimentos (pending → approved) |
+| `rate_limit_events` | Anti-spam das API routes |
 
 ## API Routes (Next.js)
 
 - `POST /api/contact`
 - `POST /api/testimonials`
+
+---
+
+## Guia rápido para Sandy
+
+| O que fazer | Onde |
+|-------------|------|
+| Escrever e publicar artigos do blog | Strapi (link **Blog (Strapi)** no menu do `/admin` ou URL do Strapi Cloud) |
+| Ver mensagens de contato | Site → `/admin` → **Contatos** |
+| Aprovar depoimentos | Site → `/admin` → **Depoimentos** |
+
+São **dois logins** diferentes (Strapi e senha do `/admin`). O texto completo de um depoimento novo só aparece no painel, não no email.
+
+---
+
+## Deploy (Netlify + Supabase)
+
+1. Rodar as duas migrations no projeto Supabase de **produção**.
+2. Configurar no Netlify: `SUPABASE_*`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`, `SITE_URL`, `STRAPI_*`, `RESEND_*` (ver `.env.example`).
+3. Verificar domínio no [Resend](https://resend.com) para `RESEND_FROM_EMAIL`.
